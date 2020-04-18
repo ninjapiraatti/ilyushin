@@ -38,6 +38,19 @@ func update(screen *ebiten.Image) error {
 	// Display the information with "X: xx, Y: xx" format
 	ebitenutil.DebugPrint(screen, fmt.Sprintf("\nX: %d, Y: %d", x, y))
 
+	// When the "left mouse button" is pressed...
+	if ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft) {
+		ebitenutil.DebugPrint(screen, "\n\nYou're pressing the 'LEFT' mouse button.")
+	}
+	// When the "right mouse button" is pressed...
+	if ebiten.IsMouseButtonPressed(ebiten.MouseButtonRight) {
+		ebitenutil.DebugPrint(screen, "\n\n\nYou're pressing the 'RIGHT' mouse button.")
+	}
+	// When the "middle mouse button" is pressed...
+	if ebiten.IsMouseButtonPressed(ebiten.MouseButtonMiddle) {
+		ebitenutil.DebugPrint(screen, "\n\n\n\nYou're pressing the 'MIDDLE' mouse button.")
+	}
+
 	return nil
 }
 

@@ -1,8 +1,6 @@
 package main
 
-import (
-	"github.com/hajimehoshi/ebiten"
-)
+import "github.com/hajimehoshi/ebiten"
 
 type toon struct {
 	image      ebiten.Image
