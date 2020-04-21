@@ -13,7 +13,3 @@ type Part struct {
 	price       int
 	broken      bool
 }
-
-func partsTest() int {
-	return 0
-}

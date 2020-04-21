@@ -12,7 +12,7 @@ import (
 var (
 	err        error
 	background *ebiten.Image
-	//engine     = Part{}
+	plane      = Plane{}
 )
 
 // Run this code once at startup
@@ -21,7 +21,9 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	//engine.broken = false
+	engine := Part{}
+	engine.name = "Konekone"
+	plane.parts = append(plane.parts, engine)
 }
 
 // Update the screen
@@ -29,10 +31,11 @@ func update(screen *ebiten.Image) error {
 	if ebiten.IsDrawingSkipped() {
 		return nil
 	}
+	debuginfo := plane.parts[0].name
 	op := &ebiten.DrawImageOptions{}
 	op.GeoM.Translate(0, 0)
 	screen.DrawImage(background, op)
-	ebitenutil.DebugPrint(screen, "Hello, World!")
+	ebitenutil.DebugPrint(screen, debuginfo)
 
 	// Get the x, y position of the cursor from the CursorPosition() function
 	x, y := ebiten.CursorPosition()
@@ -52,7 +55,6 @@ func update(screen *ebiten.Image) error {
 	if ebiten.IsMouseButtonPressed(ebiten.MouseButtonMiddle) {
 		ebitenutil.DebugPrint(screen, "\n\n\n\nYou're pressing the 'MIDDLE' mouse button.")
 	}
-
 	return nil
 }
 
@@ -60,5 +62,4 @@ func main() {
 	if err := ebiten.Run(update, 1600, 1060, 0.5, "Ilyushin"); err != nil {
 		log.Fatal(err)
 	}
-	partsTest()
 }
