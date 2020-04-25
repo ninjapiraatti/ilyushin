@@ -20,8 +20,8 @@ func InitMenuFlying() {
 	MenuFlying.active = true
 	buttonLandImage, _, err = ebitenutil.NewImageFromFile("assets/button.png", ebiten.FilterDefault)
 	buttonEventImage, _, err = ebitenutil.NewImageFromFile("assets/button.png", ebiten.FilterDefault)
-	buttonLand := Button{*buttonLandImage, 20, 400, Land}
-	buttonEvent := Button{*buttonEventImage, 160, 400, Event}
+	buttonLand := Button{*buttonLandImage, 20, 400, Land, "Land"}
+	buttonEvent := Button{*buttonEventImage, 160, 400, Event, "Event"}
 	MenuFlying.buttons = append(MenuFlying.buttons, buttonLand, buttonEvent)
 }
 

@@ -19,9 +19,9 @@ var (
 func InitMenuLanded() {
 	MenuLanded.active = true
 	buttonTakeoffImage, _, err = ebitenutil.NewImageFromFile("assets/button.png", ebiten.FilterDefault)
-	buttonTakeoff := Button{*buttonTakeoffImage, 160, 400, Takeoff}
+	buttonTakeoff := Button{*buttonTakeoffImage, 160, 400, Takeoff, "Take off"}
 	buttonShopImage, _, err = ebitenutil.NewImageFromFile("assets/button.png", ebiten.FilterDefault)
-	buttonShop := Button{*buttonShopImage, 300, 400, Shop}
+	buttonShop := Button{*buttonShopImage, 300, 400, Shop, "Shop"}
 	MenuLanded.buttons = append(MenuLanded.buttons, buttonTakeoff, buttonShop)
 }
 

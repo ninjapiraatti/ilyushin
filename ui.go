@@ -2,9 +2,21 @@ package main
 
 import (
 	"fmt"
+	"image/color"
+	"log"
+
+	"github.com/golang/freetype/truetype"
+	"golang.org/x/image/font"
 
 	"github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/ebitenutil"
+	"github.com/hajimehoshi/ebiten/examples/resources/fonts"
+	"github.com/hajimehoshi/ebiten/text"
+)
+
+// Variables
+var (
+	font76 font.Face
 )
 
 // UI will hold it all
@@ -27,6 +39,7 @@ type Button struct {
 	image      ebiten.Image
 	xPos, yPos float64
 	action     func()
+	label      string
 }
 
 // InitUI initializes the UI
@@ -38,15 +51,27 @@ func InitUI() UI {
 	InitMenuLanded()
 	InitMenuFlying()
 	UI76.currentPanel = MenuMainMenu
+	// Fonts
+	tt, err := truetype.Parse(fonts.MPlus1pRegular_ttf)
+	if err != nil {
+		log.Fatal(err)
+	}
+	font76 = truetype.NewFace(tt, &truetype.Options{
+		Size:    8,
+		DPI:     96,
+		Hinting: font.HintingFull,
+	})
 	return UI76
 }
 
 // UpdateUI updates the UI
 func UpdateUI(screen *ebiten.Image) {
 	for i := range UI76.currentPanel.buttons {
+		btn := UI76.currentPanel.buttons[i]
 		opUI := &ebiten.DrawImageOptions{}
-		opUI.GeoM.Translate(UI76.currentPanel.buttons[i].xPos, UI76.currentPanel.buttons[i].yPos) // Moves the object
-		screen.DrawImage(&UI76.currentPanel.buttons[i].image, opUI)
+		opUI.GeoM.Translate(btn.xPos, btn.yPos) // Moves the object
+		screen.DrawImage(&btn.image, opUI)
+		text.Draw(screen, btn.label, font76, int(btn.xPos+20), int(btn.yPos+30), color.White)
 	}
 	ebitenutil.DebugPrint(screen, GS.debuginfo)
 	// When the "left mouse button" is pressed...
