@@ -37,6 +37,8 @@ func InitPlane() {
 // UpdatePlane updates the plane
 func UpdatePlane(screen *ebiten.Image) {
 	opPlane := &ebiten.DrawImageOptions{}
-	opPlane.GeoM.Rotate(float64(tick%360) * 2 * math.Pi / 360) // Rotates the object
+	opPlane.GeoM.Translate(GS.current.xPos, GS.current.yPos)
+	//fmt.Println(GS.current.name)
+	opPlane.GeoM.Rotate(float64(int(GS.current.rot)%360) * 2 * math.Pi / 360) // Rotates the object
 	screen.DrawImage(planeImage, opPlane)
 }

@@ -1,11 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"log"
+	"strconv"
 
 	"github.com/hajimehoshi/ebiten"
-	"github.com/hajimehoshi/ebiten/ebitenutil"
 )
 
 // Create our empty vars
@@ -24,31 +23,22 @@ func init() {
 	}
 	UI76 = InitUI()
 	InitPlane()
+	InitGamestates()
 	GS = GameState{}
-	GS.current = mainmenu
-	GS.debuginfo = "Debug info"
+	GS.current = landed
 	ebiten.SetMaxTPS(30)
 }
 
 // Update the screen
 func update(screen *ebiten.Image) error {
+	GS.debuginfo = strconv.FormatBool(UI76.allowMousePress)
 	if ebiten.IsDrawingSkipped() {
 		return nil
 	}
 	if GS.paused == false {
 		tick++
 		UpdatePlane(screen)
-		UpdateUI(screen)
-	}
-
-	// When the "left mouse button" is pressed...
-	if ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft) && UI76.allowMousePress == true {
-		// Get the x, y position of the cursor from the CursorPosition() function
-		x, y := ebiten.CursorPosition()
-		// Display the information with "X: xx, Y: xx" format
-		ebitenutil.DebugPrint(screen, fmt.Sprintf("\nX: %d, Y: %d", x, y))
-		UIIsButtonPressed(x, y)
-		UI76.allowMousePress = false
+		go UpdateUI(screen)
 	}
 	return nil
 }

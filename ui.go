@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/ebitenutil"
@@ -50,24 +51,48 @@ func UpdateUI(screen *ebiten.Image) {
 		screen.DrawImage(&UI76.buttons[i].image, opUI)
 	}
 	ebitenutil.DebugPrint(screen, GS.debuginfo)
+	// When the "left mouse button" is pressed...
+	if ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft) && UI76.allowMousePress == true {
+		// Get the x, y position of the cursor from the CursorPosition() function
+		x, y := ebiten.CursorPosition()
+		//fmt.Println(GS.debuginfo, GS.current)
+		// Display the information with "X: xx, Y: xx" format
+		ebitenutil.DebugPrint(screen, fmt.Sprintf("\nX: %d, Y: %d", x, y))
+		UIIsButtonPressed(x, y)
+	}
 }
 
-// Takeoff is here for testing
+// Takeoff takes off
 func Takeoff() {
-	fmt.Println("Takeoff!")
-	//fmt.Println(testbutton.image.Bounds())
+	if GS.current == landed {
+		UI76.allowMousePress = false
+		fmt.Println("Takeoff!")
+		GS.current = takeoff
+		fmt.Println("Taking off!")
+		time.Sleep(3 * time.Second)
+		GS.current = flying
+		fmt.Println("Flying!")
+		UI76.allowMousePress = true
+	}
 }
 
-// Land is here for testing
+// Land lands
 func Land() {
-	fmt.Println("Land!")
-	//fmt.Println(testbutton.image.Bounds())
+	if GS.current == flying {
+		UI76.allowMousePress = false
+		fmt.Println("Land!")
+		GS.current = landing
+		fmt.Println("Landing!")
+		time.Sleep(3 * time.Second)
+		GS.current = landed
+		fmt.Println("Landed!")
+		UI76.allowMousePress = true
+	}
 }
 
-// Quit is here for testing
+// Quit quits
 func Quit() {
 	os.Exit(1)
-	//fmt.Println(testbutton.image.Bounds())
 }
 
 // UIIsButtonPressed tells if a UI button was pressed and returns the button

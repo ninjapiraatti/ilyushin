@@ -7,6 +7,7 @@ var (
 	takeoff  = State{}
 	flying   = State{}
 	landing  = State{}
+	crashing = State{}
 	credits  = State{}
 )
 
@@ -20,4 +21,25 @@ type GameState struct {
 //State is a gamestate
 type State struct {
 	name string
+	xPos float64
+	yPos float64
+	rot  float64
+}
+
+// InitGamestates initiates state
+func InitGamestates() {
+	landed.name = "Landed"
+	landed.xPos = 200
+	landed.yPos = 200
+	takeoff.name = "Takeoff"
+	takeoff.xPos = 200
+	takeoff.yPos = 200
+	takeoff.rot = 10
+	flying.name = "Flying"
+	flying.xPos = 200
+	flying.yPos = 50
+	landing.name = "Landing"
+	landing.xPos = 200
+	landing.yPos = 50
+	landing.rot = 50
 }
