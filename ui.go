@@ -66,6 +66,10 @@ func InitUI() UI {
 
 // UpdateUI updates the UI
 func UpdateUI(screen *ebiten.Image) {
+	if ebiten.IsKeyPressed(ebiten.KeyEscape) {
+		GS.paused = true
+		UI76.currentPanel = MenuMainMenu
+	}
 	for i := range UI76.currentPanel.buttons {
 		btn := UI76.currentPanel.buttons[i]
 		opUI := &ebiten.DrawImageOptions{}

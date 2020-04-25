@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/hajimehoshi/ebiten"
@@ -24,7 +23,7 @@ func InitMenuMainMenu() {
 	buttonQuitImage, _, err = ebitenutil.NewImageFromFile("assets/button.png", ebiten.FilterDefault)
 	buttonStartNew := Button{*buttonStartNewImage, 80, 400, Start, "New Game"}
 	buttonLoad := Button{*buttonLoadImage, 200, 400, Load, "Load Game"}
-	buttonQuit := Button{*buttonQuitImage, 320, 400, Quit, "Quit"}
+	buttonQuit := Button{*buttonQuitImage, 320, 400, Quit, "Save&Quit"}
 	MenuMainMenu.buttons = append(MenuMainMenu.buttons, buttonStartNew, buttonLoad, buttonQuit)
 }
 
@@ -34,12 +33,8 @@ func Start() {
 	UI76.currentPanel = MenuLanded
 }
 
-// Load loads
-func Load() {
-	fmt.Println("Loading... not!")
-}
-
 // Quit quits
 func Quit() {
+	Save()
 	os.Exit(1)
 }

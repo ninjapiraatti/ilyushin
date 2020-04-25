@@ -1,11 +1,20 @@
 package main
 
 import (
+	"fmt"
 	"log"
+	"os"
 	"strconv"
 
 	"github.com/hajimehoshi/ebiten"
 )
+
+// Check checks for errors. I think.
+func check(e error) {
+	if e != nil {
+		panic(e)
+	}
+}
 
 // Create our empty vars
 var (
@@ -17,15 +26,21 @@ var (
 
 // Run this code once at startup
 func init() {
-
-	if err != nil {
-		log.Fatal(err)
-	}
 	UI76 = InitUI()
 	InitPlane()
 	InitGamestates()
 	GS = GameState{}
 	GS.current = mainmenu
+
+	f, err := os.Create("data/gamedata.dat")
+	check(err)
+	defer f.Close()
+
+	testdata, err := f.WriteString("Lorem ipsum")
+	check(err)
+	f.Sync()
+
+	fmt.Println(testdata)
 	ebiten.SetMaxTPS(30)
 }
 
@@ -38,8 +53,8 @@ func update(screen *ebiten.Image) error {
 	if GS.paused == false {
 		tick++
 		UpdatePlane(screen)
-		go UpdateUI(screen)
 	}
+	go UpdateUI(screen)
 	return nil
 }
 
