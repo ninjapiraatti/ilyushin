@@ -32,14 +32,14 @@ func InitGamestates() {
 	landed.xPos = 200
 	landed.yPos = 200
 	takeoff.name = "Takeoff"
-	takeoff.xPos = 200
-	takeoff.yPos = 200
-	takeoff.rot = 10
+	takeoff.xPos = 50
+	takeoff.yPos = 290
+	takeoff.rot = -30
 	flying.name = "Flying"
 	flying.xPos = 200
 	flying.yPos = 50
 	landing.name = "Landing"
-	landing.xPos = 200
-	landing.yPos = 50
-	landing.rot = 50
+	landing.xPos = 270
+	landing.yPos = 20
+	landing.rot = 20
 }

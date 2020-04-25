@@ -25,7 +25,7 @@ func init() {
 	InitPlane()
 	InitGamestates()
 	GS = GameState{}
-	GS.current = landed
+	GS.current = mainmenu
 	ebiten.SetMaxTPS(30)
 }
 
