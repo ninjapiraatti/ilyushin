@@ -46,7 +46,7 @@ func init() {
 
 // Update the screen
 func update(screen *ebiten.Image) error {
-	GS.debuginfo = strconv.FormatBool(UI76.allowMousePress)
+	GS.debuginfo = strconv.FormatBool(UI76.allowInterface)
 	if ebiten.IsDrawingSkipped() {
 		return nil
 	}

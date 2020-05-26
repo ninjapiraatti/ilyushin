@@ -31,7 +31,7 @@ func InitPlane() {
 	engine := Part{}
 	engine.name = "Konekone"
 	plane.parts = append(plane.parts, engine)
-	planeImage, _, err = ebitenutil.NewImageFromFile("assets/syvattyil2.png", ebiten.FilterDefault)
+	planeImage, _, err = ebitenutil.NewImageFromFile("assets/syvattyil.png", ebiten.FilterDefault)
 }
 
 // UpdatePlane updates the plane
@@ -39,6 +39,7 @@ func UpdatePlane(screen *ebiten.Image) {
 	if GS.current != mainmenu && GS.current != credits {
 		opPlane := &ebiten.DrawImageOptions{}
 		opPlane.GeoM.Translate(GS.current.xPos, GS.current.yPos)
+		opPlane.GeoM.Scale(0.5, 0.5)
 		opPlane.GeoM.Rotate(float64(int(GS.current.rot)%360) * 2 * math.Pi / 360) // Rotates the object
 		screen.DrawImage(planeImage, opPlane)
 	}

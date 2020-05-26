@@ -28,7 +28,7 @@ func InitMenuFlying() {
 // Land lands
 func Land() {
 	if GS.current == flying {
-		UI76.allowMousePress = false
+		UI76.allowInterface = false
 		fmt.Println("Land!")
 		GS.current = landing
 		fmt.Println("Landing!")
@@ -36,11 +36,6 @@ func Land() {
 		GS.current = landed
 		UI76.currentPanel = MenuLanded
 		fmt.Println("Landed!")
-		UI76.allowMousePress = true
+		UI76.allowInterface = true
 	}
-}
-
-// Event events!
-func Event() {
-	fmt.Println("Event!")
 }

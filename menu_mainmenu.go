@@ -29,6 +29,7 @@ func InitMenuMainMenu() {
 
 // Start starts the game
 func Start() {
+	GS.paused = false
 	GS.current = landed
 	UI76.currentPanel = MenuLanded
 }
