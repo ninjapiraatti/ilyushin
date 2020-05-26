@@ -16,6 +16,7 @@ type GameState struct {
 	current   State
 	paused    bool
 	debuginfo string
+	money     int
 }
 
 //State is a gamestate

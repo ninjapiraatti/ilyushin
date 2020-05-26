@@ -27,7 +27,7 @@ func InitMenuLanded() {
 	buttonMapImage, _, err = ebitenutil.NewImageFromFile("assets/button.png", ebiten.FilterDefault)
 	buttonMap := Button{*buttonMapImage, 440, 400, GotoMap, "Map"}
 	buttonLEventImage, _, err = ebitenutil.NewImageFromFile("assets/button.png", ebiten.FilterDefault)
-	buttonEvent := Button{*buttonLEventImage, 580, 400, Event, "Event"}
+	buttonEvent := Button{*buttonLEventImage, 580, 400, EventFunc, "Event"}
 	MenuLanded.buttons = append(MenuLanded.buttons, buttonTakeoff, buttonShop, buttonMap, buttonEvent)
 }
 

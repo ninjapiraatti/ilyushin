@@ -35,8 +35,8 @@ func CloseDialog() {
 	fmt.Println("Exited dialog!")
 }
 
-// Event fires the event
-func Event() {
+// EventFunc fires the event
+func EventFunc() {
 	fmt.Println("Event!")
 	UI76.prevPanel = UI76.currentPanel
 	UI76.currentPanel = MenuEvent
