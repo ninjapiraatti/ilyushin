@@ -31,6 +31,7 @@ func init() {
 	InitGamestates()
 	GS = GameState{}
 	GS.current = mainmenu
+	GS.money = 25000
 
 	f, err := os.Create("data/gamedata.dat")
 	check(err)

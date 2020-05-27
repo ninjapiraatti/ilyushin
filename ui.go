@@ -85,6 +85,7 @@ func UpdateUI(screen *ebiten.Image) {
 	if UI76.allowInterface == true {
 		if ebiten.IsKeyPressed(ebiten.KeyEscape) {
 			GS.paused = true
+			UI76.prevPanel = UI76.currentPanel
 			UI76.currentPanel = MenuMainMenu
 		}
 		if ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft) && UI76.mousePressed == false {

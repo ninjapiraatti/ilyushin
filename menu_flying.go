@@ -18,6 +18,7 @@ var (
 // InitMenuFlying initiates the flight menu
 func InitMenuFlying() {
 	MenuFlying.active = true
+	UI76.currentPanel = MenuFlying
 	buttonLandImage, _, err = ebitenutil.NewImageFromFile("assets/button.png", ebiten.FilterDefault)
 	buttonEventImage, _, err = ebitenutil.NewImageFromFile("assets/button.png", ebiten.FilterDefault)
 	buttonLand := Button{*buttonLandImage, 20, 400, Land, "Land"}
